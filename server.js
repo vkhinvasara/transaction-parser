@@ -20,7 +20,8 @@ app.post('/getTransactionInfo', (req, res) => {
     const modifiedResponse = {
       atype: transactionInfo.account.type,
       ttype: transactionInfo.transaction.type,
-      amount: transactionInfo.transaction.amount
+      amount: transactionInfo.transaction.amount,
+      balance: transactionInfo.balance.available
     };
     res.send(modifiedResponse);
   } catch (error) {
