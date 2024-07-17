@@ -16,7 +16,13 @@ app.post('/getTransactionInfo', (req, res) => {
 
   try {
     const transactionInfo = getTransactionInfo(sms);
-    res.send(transactionInfo);
+    // Transform the response to include only the specified attributes
+    const modifiedResponse = {
+      atype: transactionInfo.account.type,
+      ttype: transactionInfo.transaction.type,
+      amount: transactionInfo.transaction.amount
+    };
+    res.send(modifiedResponse);
   } catch (error) {
     res.status(500).send({ error: 'Failed to parse transaction info' });
   }
